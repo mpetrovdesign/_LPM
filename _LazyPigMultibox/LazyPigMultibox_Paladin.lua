@@ -55,8 +55,19 @@ function LazyPigMultibox_SmartSeal(mode, dmg)
 				end	
 			end
 		end
-	elseif dmg and CheckInteractDistance("target", 3) then
-		castSealOfRighteousness()
+	else
+	if dmg and Zorlen_IsEnemy("target") then
+		local acrive_seal = isSealActive()
+		
+		if Zorlen_isEnemy("target") then 
+			castJudgement()
+				if not active_seal and Zorlen_ManaPercent("player") < 40 then 
+					Zorlen_castSpellByName(unique_seal);
+				else
+			 	if not active_seal and Zorlen_ManaPercent("player") > 40 then
+          				castSealOfLight
+				end
+		end
 	end	
 end
 
